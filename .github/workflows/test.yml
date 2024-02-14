@@ -1,0 +1,22 @@
+name: Granja Animales Node.js CI # Nom descriptiu per al nostre workflow
+on: # 1
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs: # Ací es definixen els jobs, en el nostre cas un només: build.
+  build:
+    runs-on: ubuntu-latest # 2
+    steps: # 3
+    - name: Checkout repository # Nomenem cada pas del job
+      uses: actions/checkout@v2 # 4
+    - name: Use Node.js
+      uses: actions/setup-node@v1 # 5
+      with:
+        node-version: '18.x'
+    - name: Run Yarn # 6
+      run: yarn
+    - name: Run tests
+      run: yarn test
